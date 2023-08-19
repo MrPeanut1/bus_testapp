@@ -1,33 +1,9 @@
+import 'package:bus_testapp/screens/my_trips_screen.dart';
+import 'package:bus_testapp/screens/show_map_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  late GoogleMapController mapController;
-  final Set<Marker> _markers = {};
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-    _addMarkers(); // Add bus stop markers here
-  }
-
-  void _addMarkers() {
-    _markers.add(
-      Marker(
-        markerId: const MarkerId('busStop1'),
-        position: const LatLng(37.7749, -122.4194), // Example coordinates
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-        infoWindow: const InfoWindow(title: 'Bus Stop 1'),
-      ),
-      // Add more markers as needed
-    );
-  }
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +11,64 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(37.7749, -122.4194), // Initial map coordinates
-          zoom: 15,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/background.jpg'), // image asset path
+            fit: BoxFit.cover,
+          ),
         ),
-        markers: _markers,
-        myLocationEnabled: true,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ShowMapScreen()));
+                },
+                child: Container(
+                  width: 200,
+                  height: 100,
+                  color: Colors.blue.withOpacity(0.8),
+                  child: const Center(
+                    child: Text(
+                      'Show Map',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyTripsScreen()));
+                },
+                child: Container(
+                  width: 200,
+                  height: 100,
+                  color: Colors.green.withOpacity(0.8),
+                  child: const Center(
+                    child: Text(
+                      'My Trips',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
+
+
+
+
