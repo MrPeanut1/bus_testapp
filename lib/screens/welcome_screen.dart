@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bus_testapp/screens/home_screen.dart';
+import 'package:bus_testapp/screens/home/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
