@@ -1,5 +1,6 @@
 import 'package:bus_testapp/screens/authenticate/auth_screen.dart';
-import 'package:bus_testapp/screens/authenticate/authenticate.dart';
+import 'package:bus_testapp/screens/home/home_screen.dart';
+import 'package:bus_testapp/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class Wrapper extends StatelessWidget {
@@ -8,6 +9,6 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //return home or authenticate widget
-    return const AuthScreen();
+    return const HomeScreen();
   }
 }
