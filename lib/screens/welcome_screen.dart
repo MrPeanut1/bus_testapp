@@ -1,30 +1,42 @@
+import 'package:bus_testapp/screens/authenticate/auth_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:bus_testapp/screens/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // User? user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Welcome Screen'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // if (user != null) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-            );
-            // } else {
-            //   // Handle case where user is null or not signed in
-            // }
-          },
-          child: const Text('Welcome'),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/welcome_bg.jpg'), // Background image asset path
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const AuthScreen()),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40), // Adjust padding
+            ).copyWith(
+              backgroundColor: MaterialStateProperty.all(Colors.green), // Set the button color to green
+            ),
+            child: const Text(
+              'Welcome ->',
+              style: TextStyle(
+                fontWeight: FontWeight.bold, // Make the text bold
+              ),
+            ),
+          ),
         ),
       ),
     );
